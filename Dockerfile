@@ -1,9 +1,6 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n
 
 USER root
-
 RUN apk update
-# Install ffmpeg to /usr/local/bin (safe for node user)
-RUN apk add ffmpeg
-
+RUN apk add --no-cache ffmpeg
 USER node
