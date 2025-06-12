@@ -4,6 +4,6 @@ USER root
 
 RUN apk add --no-cache ffmpeg
 
-ENV PATH="/usr/bin:${PATH}"
+RUN which ffmpeg && ls -l $(which ffmpeg)
 
 USER node
