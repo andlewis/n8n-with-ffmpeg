@@ -1,12 +1,9 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n
 
 USER root
+RUN apk upgrade -U \ 
+    && apk add ca-certificates ffmpeg libva-intel-driver \
+    && rm -rf /var/cache/*
 
-# Install minimal dependencies
-RUN apk update && apk add --no-cache curl
-
-# Download static ffmpeg build
-RUN curl -L -o /usr/local/bin/ffmpeg https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz \
-    && chmod +x /usr/local/bin/ffmpeg
-
+RUN npm install -g @qdrant/js-client-rest fluent-ffmpeg assemblyai @langchain/community typescript
 USER node
